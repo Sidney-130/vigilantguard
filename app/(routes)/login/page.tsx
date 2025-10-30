@@ -38,7 +38,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col md:flex-row">
+    <div className="h-screen bg-background flex flex-col md:flex-row overflow-hidden">
       {/* Left Side */}
       <div className="hidden md:flex md:w-1/2 items-center justify-center p-8">
         <div className="w-full max-w-sm aspect-square bg-white rounded-3xl shadow-lg flex items-center justify-center bg-linear-to-b from-white to-slate-100 ">
