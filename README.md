@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VigilantGuard
 
-## Getting Started
+**A Starknet-native fraud detection system** powered by **Cairo smart contracts**, **on-chain ML inference**, and **behavioral biometrics** — delivering **real-time, trustless fraud prevention** in the Web3 era.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Introduction
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**VigilantGuard** is a **fully decentralized fraud detection layer** built on **Starknet** using **Cairo 1.0**. It combines:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **On-chain risk scoring** via provable Cairo contracts
+- **Real-time behavioral biometrics** in the browser
+- **ZK-friendly ML models** for pattern detection
+- **Next.js + pnpm** frontend for seamless dApp integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All fraud signals are computed **on-chain**, verified via **STARK proofs**, and enforced **without trusted third parties**.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Goals & Objectives
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Goal                        | How We Achieve It |
+|---------------------------|-------------------|
+| **Detect Fraud in Real-Time** | On-chain transaction + behavior analysis |
+| **Adapt to New Threats**     | Model weights updated via governance + on-chain training |
+| **Zero False Positives**     | Multi-signal fusion: tx pattern + biometrics + reputation |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Starknet & Cairo
+- **Cairo 1.0** smart contracts for risk engine
+- **On-chain anomaly detection** using fixed-point math
+- **Provable execution** via STARKs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Machine Learning
+- **Lightweight models** (decision trees → Cairo conversion)
+- **Federated updates** from user devices (privacy-preserving)
+
+### Behavioral Biometrics
+- **Keystroke, mouse, touch, and timing patterns**
+- **Session entropy scoring** in-browser (WebAssembly)
+
+### Frontend & DevOps
+| Layer       | Tech |
+|------------|------|
+| **Framework** | [Next.js](https://nextjs.org) (App Router) |
+| **Package Manager** | [pnpm](https://pnpm.io) (workspaces) |
+| **Wallet** | [Argent X](https://www.argent.xyz) / [Braavos](https://braavos.app) |
+| **Deployment** | Vercel | (https://vigilant-guard-jade.vercel.app/)
+
+---
+
+## ✅ Functional Requirements
+
+### Real-Time Risk Engine (On-Chain)
+```cairo
