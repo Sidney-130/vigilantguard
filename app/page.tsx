@@ -4,10 +4,7 @@ export default function Home() {
   const router = useRouter();
   return (
     <div className="flex flex-col justify-center items-center">
-      <button
-        className="bg-blue-600 p-4"
-        onClick={() => router.push("/dashboard")}
-      >
+      <button className="bg-blue-600 p-4" onClick={() => router.push("/login")}>
         Get Started
       </button>
     </div>
