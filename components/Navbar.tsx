@@ -50,7 +50,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {open && (
-        <div className="md:hidden border-t bg-white p-4 space-y-4 text-sm">
+        <div className="md:hidden border-t bg-black/10 p-4 space-y-4 text-sm backdrop-blur-2xl shadow-md fixed w-full">
           <button className="block w-full text-left text-blue-600 font-medium">
             Dashboard
           </button>
