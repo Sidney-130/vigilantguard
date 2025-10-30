@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Bell, Clock, Gauge, Settings, Menu } from "lucide-react";
+import WalletStatus from "./WalletStatus";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -38,6 +39,7 @@ export default function Navbar() {
           <img src="eth-logo.png" className="w-5 h-5" />
           <span className="text-sm text-gray-600">bubu23qbase</span>
           <img src="profile-image.png" className="w-7 h-7 rounded-full" />
+          <WalletStatus />
         </div>
 
         {/* Mobile Menu Button */}
@@ -61,12 +63,12 @@ export default function Navbar() {
           <button className="block w-full text-left text-gray-700">
             Settings
           </button>
-
           <div className="pt-4 border-t flex items-center gap-2">
             <img src="eth-logo.png" className="w-5 h-5" />
             <span className="text-sm text-gray-600">bubu23qbase</span>
             <img src="/profile.png" className="w-7 h-7 rounded-full ml-auto" />
           </div>
+          <WalletStatus />
         </div>
       )}
     </header>
