@@ -47,7 +47,9 @@ All fraud signals are computed **on-chain**, verified via **STARK proofs**, and 
 | **Framework** | [Next.js](https://nextjs.org) (App Router) |
 | **Package Manager** | [pnpm](https://pnpm.io) (workspaces) |
 | **Wallet** | [Argent X](https://www.argent.xyz) / [Braavos](https://braavos.app) |
-| **Deployment** | Vercel | (https://vigilantguard.vercel.app/)
+| **Deployment** | Vercel | (https://vigilantguard.vercel.app/) 
+
+## Best to open website with Braavos or Ready wallet
 
 ---
 
