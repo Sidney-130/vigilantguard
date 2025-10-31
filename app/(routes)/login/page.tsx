@@ -39,7 +39,6 @@ export default function LoginPage() {
 
   return (
     <div className="h-screen bg-background flex flex-col md:flex-row overflow-hidden">
-      {/* Left Side */}
       <div className="hidden md:flex md:w-1/2 items-center justify-center p-8">
         <div className="w-full max-w-sm aspect-square bg-white rounded-3xl shadow-lg flex items-center justify-center bg-linear-to-b from-white to-slate-100 ">
           <div className="relative">
@@ -48,10 +47,8 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right Side */}
       <div className="h-screen w-full md:w-1/2 bg-slate-100 flex flex-col items-center justify-center p-6 md:p-12">
         <div className="w-full max-w-md">
-          {/* Header */}
           <div className="text-center flex flex-col gap-8">
             <div className="flex items-center justify-center gap-2 mb-6">
               <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -72,7 +69,6 @@ export default function LoginPage() {
             </h2>
           </div>
 
-          {/* Connected State */}
           <div className="mt-10">
             {address && (
               <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -83,7 +79,6 @@ export default function LoginPage() {
             )}
           </div>
 
-          {/* Wallet Button — unchanged UI, now opens MODAL */}
           <div className="space-y-3 mb-8">
             <button
               onClick={openWalletModal}
@@ -100,7 +95,6 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Sign In Instead */}
           <div className="text-center">
             <Link
               href="/login"

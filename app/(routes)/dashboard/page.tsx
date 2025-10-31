@@ -19,7 +19,6 @@ export default function Page() {
           </p>
         </div>
         <div className="grid grid-cols-1  md:grid-cols-2 items-center gap-5 mb-8">
-          {/* KPI Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <KPICard
               title="Account Safety Score"
@@ -50,8 +49,6 @@ export default function Page() {
               icon={<Lock className="w-8 h-8 text-orange-500" />}
             />
           </div>
-
-          {/* Charts Row */}
           <div className="">
             <div className="">
               <TransactionVolumeChart />
@@ -65,7 +62,6 @@ export default function Page() {
           <KeyMetrics />
         </div>
         <div>
-          {/* Recent Transactions */}
           <div className="grid grid-cols-1  md:grid-cols-2 items-center gap-5 mb-8">
             {" "}
             <RecentTransactions />

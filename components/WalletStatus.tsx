@@ -26,7 +26,6 @@ export default function WalletStatus() {
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
-  // Open wallet modal (same as login page)
   async function openWalletModal() {
     const { connector } = await starknetkitConnectModal();
     if (!connector) return;
@@ -34,12 +33,11 @@ export default function WalletStatus() {
   }
 
   async function handleDisconnect() {
-    await disconnect(); // wait for wallet to disconnect
-    setOpen(false); // close dropdown
-    router.push("/login"); // navigate to login page
+    await disconnect(); 
+    setOpen(false);
+    router.push("/login"); 
   }
 
-  // If wallet is NOT connected → show "Connect Wallet"
   if (!address) {
     return (
       <button
@@ -53,8 +51,6 @@ export default function WalletStatus() {
       </button>
     );
   }
-
-  // Connected → Show dropdown wallet button
   const short = `${address.slice(0, 6)}...${address.slice(-4)}`;
 
   return (

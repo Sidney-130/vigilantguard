@@ -8,7 +8,6 @@ export function KeyMetrics() {
       </h2>
 
       <div className="space-y-6">
-        {/* Average Risk Score */}
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-muted-foreground mb-1">
@@ -20,8 +19,6 @@ export function KeyMetrics() {
             <span className="text-2xl font-bold text-green-600">24</span>
           </div>
         </div>
-
-        {/* Detection Accuracy */}
         <div>
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-muted-foreground">Detection Accuracy</p>
@@ -34,8 +31,6 @@ export function KeyMetrics() {
             ></div>
           </div>
         </div>
-
-        {/* False Positive Rate */}
         <div>
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-muted-foreground">False Positive Rate</p>
@@ -49,7 +44,6 @@ export function KeyMetrics() {
           </div>
         </div>
 
-        {/* Response Time */}
         <div>
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-muted-foreground">Response Time</p>

@@ -17,7 +17,6 @@ export default function Landing() {
 
   return (
     <div className="font-sans text-gray-800">
-      {/* Header */}
       <header className="flex justify-between items-center py-4 px-6 border-b border-gray-200 bg-gray-50">
         <div className="flex items-center gap-2">
           <Image
@@ -95,7 +94,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Protection Features */}
       <section className="py-16 px-6 max-w-6xl mx-auto" data-aos="fade-up">
         <h2 className="text-2xl font-semibold text-center mb-2">
           Comprehensive Protection
@@ -125,8 +123,6 @@ export default function Landing() {
           ))}
         </div>
       </section>
-
-      {/* How It Works */}
       <section
         className="py-20 px-6 bg-blue-600 text-white text-center mx-8 rounded-3xl md:mx-20"
         data-aos="fade-up"
@@ -161,8 +157,6 @@ export default function Landing() {
           ))}
         </div>
       </section>
-
-      {/* CTA */}
       <section className="py-24 text-center px-6" data-aos="fade-up">
         <h3 className="text-xl sm:text-2xl font-semibold mb-4">
           Ready to Secure Your Web3 Transactions?
@@ -178,8 +172,6 @@ export default function Landing() {
           Launch Dashboard
         </button>
       </section>
-
-      {/* Footer */}
       <footer className="py-10 text-center text-xs text-gray-500 border-t border-gray-200">
         © 2025 VigilantGuard. All rights reserved.
       </footer>

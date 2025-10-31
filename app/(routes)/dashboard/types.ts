@@ -5,5 +5,5 @@ export type Metric = {
   value: string | number;
   change: string;
   changeColor?: "green" | "red";
-  icon: LucideIcon; // icon is now a component type
+  icon: LucideIcon;
 };
