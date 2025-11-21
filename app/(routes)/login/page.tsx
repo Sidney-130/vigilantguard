@@ -1,40 +1,70 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Shield, ArrowRight } from "lucide-react";
+import { Shield, ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
 
-import { Connector, useAccount, useConnect } from "@starknet-react/core";
-import { StarknetkitConnector, useStarknetkitConnectModal } from "starknetkit";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [mounted, setMounted] = useState(false);
+  const [connectionError, setConnectionError] = useState<string | null>(null);
+  const [showContinueButton, setShowContinueButton] = useState(false);
 
-  const { address } = useAccount();
-  const { connect, connectors } = useConnect();
+  const { address, isConnected } = useAccount();
+  const { connect, connectors, error } = useConnect({
+    mutation: {
+      onError: (error) => {
+        handleConnectionError(error.message);
+      },
+      onSuccess: () => {
+        setShowContinueButton(true);
+      },
+    },
+  });
+  const { disconnect } = useDisconnect();
   const router = useRouter();
 
-  const { starknetkitConnectModal } = useStarknetkitConnectModal({
-    connectors: connectors as StarknetkitConnector[],
-  });
+  const filteredConnectors = connectors.filter((connector) =>
+    ["metamask", "okx"].some((wallet) =>
+      connector.name.toLowerCase().includes(wallet)
+    )
+  );
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (address) {
-      router.push("/dashboard");
+    if (isConnected) {
+      setShowContinueButton(true);
     }
-  }, [address, router]);
+  }, [isConnected]);
+
+  useEffect(() => {
+    if (error) {
+      handleConnectionError(error.message);
+    }
+  }, [error]);
 
   if (!mounted) return null;
 
-  async function openWalletModal() {
-    const { connector } = await starknetkitConnectModal();
-    if (!connector) return;
-    await connect({ connector: connector as Connector });
+  function handleConnectionError(message: string) {
+    let friendlyMessage = "Please use metamask";
+
+    if (message.includes("rejected")) {
+      friendlyMessage = "Connection was rejected. Please try again.";
+    } else if (message.includes("user rejected")) {
+      friendlyMessage = "You cancelled the connection. Feel free to try again.";
+    }
+
+    toast.error(friendlyMessage);
+  }
+
+  function handleContinueToDashboard() {
+    router.push("/dashboard");
   }
 
   return (
@@ -71,28 +101,50 @@ export default function LoginPage() {
 
           <div className="mt-10">
             {address && (
-              <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+              <div className="p-4 bg-green-50 border border-green-200 rounded-lg flex justify-between items-center">
                 <p className="text-sm text-green-800">
                   Connected: {address.slice(0, 6)}...{address.slice(-4)}
                 </p>
+                <button
+                  onClick={() => {
+                    disconnect();
+                    setShowContinueButton(false);
+                  }}
+                  className="text-xs text-red-600 hover:text-red-800 transition-colors"
+                >
+                  Disconnect
+                </button>
               </div>
             )}
           </div>
 
-          <div className="space-y-3 mb-8">
-            <button
-              onClick={openWalletModal}
-              className="w-full px-6 py-4 bg-white border-2 border-slate-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 flex items-center gap-2 md:gap-5 justify-center text-[14px] md:text-sm"
-            >
-              <div className="flex items-center gap-1">
-                <img src="braavos-logo.png" alt="logo" className="w-7 h-7" />{" "}
-                <span>Braavos Wallet</span>
+          <div className="space-y-3 mb-8 mt-4">
+            {!isConnected && (
+              <div className="space-y-3">
+                {filteredConnectors.map((connector) => (
+                  <button
+                    key={connector.id}
+                    onClick={() => {
+                      setConnectionError(null);
+                      connect({ connector });
+                    }}
+                    className="w-full px-6 py-4 bg-white border-2 border-slate-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 flex items-center gap-2 md:gap-5 justify-center text-[14px] md:text-sm"
+                  >
+                    <span>{connector.name}</span>
+                  </button>
+                ))}
               </div>
-              <div className="flex items-center gap-0.5 md:gap-1">
-                <img src="agent-logo.png" alt="logo" className="w-7 h-7" />{" "}
-                <span>Ready Wallet</span>
-              </div>
-            </button>
+            )}
+
+            {showContinueButton && isConnected && (
+              <button
+                onClick={handleContinueToDashboard}
+                className="w-full px-6 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-200 flex items-center justify-center gap-2"
+              >
+                <Check className="w-5 h-5" />
+                Continue to Dashboard
+              </button>
+            )}
           </div>
 
           <div className="text-center">

@@ -1,6 +1,6 @@
 import type React from "react";
-import StarknetProvider from "../Providers";
 import { Toaster } from "sonner";
+import { Web3Provider } from "@/hooks/WagmiProvider";
 
 export default function LoginLayout({
   children,
@@ -8,9 +8,9 @@ export default function LoginLayout({
   children: React.ReactNode;
 }) {
   return (
-    <StarknetProvider>
+    <Web3Provider>
       {children}
       <Toaster position="top-right" />
-    </StarknetProvider>
+    </Web3Provider>
   );
 }

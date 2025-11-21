@@ -1,0 +1,1 @@
+{"version":1,"contracts":[{"id":"a3h9pq7sepj7e","package_name":"vigilant_guard","contract_name":"VigilantGuard","module_path":"vigilant_guard::VigilantGuard","artifacts":{"sierra":"vigilant_guard_VigilantGuard.contract_class.json","casm":"vigilant_guard_VigilantGuard.compiled_contract_class.json"}}]}

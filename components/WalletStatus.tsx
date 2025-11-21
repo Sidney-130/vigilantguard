@@ -1,44 +1,49 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  Connector,
-  useAccount,
-  useConnect,
-  useDisconnect,
-} from "@starknet-react/core";
-import { StarknetkitConnector, useStarknetkitConnectModal } from "starknetkit";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { ChevronDown, LogOut, Wallet } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function WalletStatus() {
-  const { address } = useAccount();
-  const { connect, connectors } = useConnect();
+  const { address, isConnected } = useAccount();
+  const { connect, connectors } = useConnect({
+    mutation: {
+      onError: (error) => {
+        console.error("Connection error", error);
+      },
+    },
+  });
   const { disconnect } = useDisconnect();
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
-  const { starknetkitConnectModal } = useStarknetkitConnectModal({
-    connectors: connectors as StarknetkitConnector[],
-  });
-
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
-  async function openWalletModal() {
-    const { connector } = await starknetkitConnectModal();
-    if (!connector) return;
-    await connect({ connector: connector as Connector });
+  function openWalletModal() {
+    const metaMaskConnector = connectors.find(
+      (c) => c.name.toLowerCase() === "metamask"
+    );
+    const walletConnectConnector = connectors.find(
+      (c) => c.name.toLowerCase() === "walletconnect"
+    );
+
+    const connector = metaMaskConnector || walletConnectConnector;
+
+    if (connector) {
+      connect({ connector });
+    }
   }
 
-  async function handleDisconnect() {
-    await disconnect(); 
+  function handleDisconnect() {
+    disconnect();
     setOpen(false);
-    router.push("/login"); 
+    router.push("/login");
   }
 
-  if (!address) {
+  if (!isConnected || !address) {
     return (
       <button
         onClick={openWalletModal}
@@ -51,6 +56,7 @@ export default function WalletStatus() {
       </button>
     );
   }
+
   const short = `${address.slice(0, 6)}...${address.slice(-4)}`;
 
   return (
